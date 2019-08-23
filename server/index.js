@@ -4,6 +4,7 @@ const cors = require('cors')
 
 const db = require('./db')
 
+// Creating an Express app
 const app = express()
 const apiPort = 3000
 
@@ -17,7 +18,7 @@ app.get('/', (req, res) => {
     res.send('Hello')
 })
 
-// adding routes to the app
+// Adding routes to the app
 app.use('/api', require('./routes/api'))
 
 app.listen(apiPort, () => console.log(`Server running on port ${apiPort}`))
