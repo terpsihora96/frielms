@@ -1,3 +1,5 @@
+// The module for handling user actions
+
 const User = require('../models/user-model')
 
 addUser = (req, res) => {
@@ -13,7 +15,7 @@ addUser = (req, res) => {
     const user = new User(body)
 
     if (!user) {
-        return res.status(400).json({ success: false, error: err })
+        return res.status(400).json({ success: false, error: error })
     }
 
     user
@@ -43,10 +45,10 @@ updateUser = async (req, res) => {
         })
     }
 
-    User.findOne({ _id: req.params.id }, (err, user) => {
-        if (err) {
+    User.findOne({ _id: req.params.id }, (error, user) => {
+        if (error) {
             return res.status(404).json({
-                err,
+                error,
                 message: 'User not found.',
             })
         }
@@ -71,9 +73,9 @@ updateUser = async (req, res) => {
 }
 
 deleteUser = async (req, res) => {
-    await User.findOneAndDelete({ _id: req.params.id }, (err, user) => {
-        if (err) {
-            return res.status(400).json({ success: false, error: err })
+    await User.findOneAndDelete({ _id: req.params.id }, (error, user) => {
+        if (error) {
+            return res.status(400).json({ success: false, error: error })
         }
 
         if (!user) {
@@ -83,28 +85,28 @@ deleteUser = async (req, res) => {
         }
 
         return res.status(200).json({ success: true, data: user })
-    }).catch(err => console.log(err))
+    }).catch(error => console.log(error))
 }
 
 getUsers = async (req, res) => {
-    await User.find({}, (err, users) => {
-        if (err) {
-            return res.status(400).json({ success: false, error: err })
+    await User.find({}, (error, users) => {
+        if (error) {
+            return res.status(400).json({ success: false, error: error })
         }
         if (!users.length) {
             return res
                 .status(404)
-                .json({ success: false, error: `User not found.` })
+                .json({ success: false, error: `Users not found.` })
         }
         return res.status(200).json({ success: true, data: users })
-    }).catch(err => console.log(err))
+    }).catch(error => console.log(error))
 }
 
 
 getUserById = async (req, res) => {
-    await User.findOne({ _id: req.params.id }, (err, user) => {
-        if (err) {
-            return res.status(400).json({ success: false, error: err })
+    await User.findOne({ _id: req.params.id }, (error, user) => {
+        if (error) {
+            return res.status(400).json({ success: false, error: error })
         }
 
         if (!movie) {
@@ -113,7 +115,7 @@ getUserById = async (req, res) => {
                 .json({ success: false, error: `User not found.` })
         }
         return res.status(200).json({ success: true, data: user })
-    }).catch(err => console.log(err))
+    }).catch(error => console.log(error))
 }
 
 module.exports = {
