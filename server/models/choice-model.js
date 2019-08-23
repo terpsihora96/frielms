@@ -8,4 +8,4 @@ const ChoiceSchema = new Schema(
     }
 )
 
-module.exports = mongoose.model('choices', Choice)
+module.exports = mongoose.model('choices', ChoiceSchema)

@@ -14,7 +14,10 @@ app.use(bodyParser.json())
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 
 app.get('/', (req, res) => {
-    res.send('Hello World!')
+    res.send('Hello')
 })
+
+// adding routes to the app
+app.use('/api', require('./routes/api'))
 
 app.listen(apiPort, () => console.log(`Server running on port ${apiPort}`))
