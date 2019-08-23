@@ -1,6 +1,6 @@
 const User = require('../models/user-model')
 
-createUser = (req, res) => {
+addUser = (req, res) => {
     const body = req.body
 
     if (!body) {
@@ -91,7 +91,7 @@ getUsers = async (req, res) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }
-        if (!movies.length) {
+        if (!users.length) {
             return res
                 .status(404)
                 .json({ success: false, error: `User not found.` })
@@ -117,7 +117,7 @@ getUserById = async (req, res) => {
 }
 
 module.exports = {
-    createUser,
+    addUser,
     updateUser,
     deleteUser,
     getUsers,
