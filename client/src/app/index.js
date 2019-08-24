@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import { User, Films } from '../components';
 
 function App() {
   return (
-    <h2>
-      Frielms
-    </h2>
-  );
+    <Fragment>
+      <Films></Films>
+      <User></User>
+    </Fragment>    
+  )
 }
 
 export default App;
