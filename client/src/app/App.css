@@ -1,0 +1,9 @@
+.main {
+    display: flex;
+    margin: 2rem;
+}
+
+.add {
+    position: relative;
+    left: 2rem;
+}
