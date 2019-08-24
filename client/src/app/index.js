@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { User, Films, Add } from '../components';
+import { User, Films, Add, ListUsers } from '../components';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import AddIcon from '@material-ui/icons/Add';
 import Fab from '@material-ui/core/Fab';
@@ -7,7 +7,7 @@ import Fab from '@material-ui/core/Fab';
 
 function App() {
   return (
-    // Fragment needed for being able to use JSX
+    // Fragment needed for being able to use multiple JSX
     // Setting up the routes
 
     <Fragment>
@@ -20,6 +20,7 @@ function App() {
       <Router>
         <Switch>
           <Route exact path='/user' component={ Add } />
+          <Route exact path='/users' component={ ListUsers } />
         </Switch>
       </Router>
 

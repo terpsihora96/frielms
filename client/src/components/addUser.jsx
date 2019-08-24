@@ -4,12 +4,13 @@ import SaveIcon from '@material-ui/icons/Save';
 import Button from '@material-ui/core/Button';
 import { FormLabel } from '@material-ui/core';
 import './addUser.css';
+import api from '../api';
 
 export default class Add extends Component {
     constructor(props) {
         super(props);
-        this.onChangeName = this.onChangeName.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
+        this.onChangeName = this.onChangeName.bind(this)
+        this.onSubmit = this.onSubmit.bind(this)
   
         this.state = {
             name: '',
@@ -18,24 +19,28 @@ export default class Add extends Component {
     }
 
     onChangeName(data) {
-      this.setState({
-        name: data.target.value,
-        btnName: 'Cancel'
-      });
+        this.setState({
+            name: data.target.value,
+            btnName: 'Cancel'
+        });
     }
   
-    onSubmit(data) {
-        data.preventDefault()
-        this.setState({
-            name: '',
-            btnName: 'Finish'
+    onSubmit = async () => {
+        const data = { name: this.state.name }
+        
+        await api.addUser(data).then(res => {
+            alert(`Success`)
+            this.setState({
+                name: '',
+                btnName: 'Finish'
+            })
         })
     }
 
     render() {
         return (
             <div className='modal'>
-                <FormLabel class='modal-title'>
+                <FormLabel className='modal-title'>
                 Add new user
                 </FormLabel>   
                 <form onSubmit={this.onSubmit}>
@@ -45,11 +50,11 @@ export default class Add extends Component {
                     onChange={this.onChangeName}
                     margin="dense"
                     />
-                    <div class='btn-container'>
-                    <Button size="medium" type="submit" variant="primary">
+                    <div className='btn-container'>
+                    <Button size="medium" type="submit" >
                         <SaveIcon /> Save 
                     </Button>
-                    <Button size="medium" href={'/'} variant="primary">
+                    <Button size="medium" href={'/'} >
                         { this.state.btnName } 
                     </Button>
                     </div>
