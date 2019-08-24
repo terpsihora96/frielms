@@ -3,7 +3,7 @@ import TextField from '@material-ui/core/TextField';
 import SaveIcon from '@material-ui/icons/Save';
 import Button from '@material-ui/core/Button';
 import { FormLabel } from '@material-ui/core';
-import './addUser.css'
+import './addUser.css';
 
 export default class Add extends Component {
     constructor(props) {
@@ -12,20 +12,23 @@ export default class Add extends Component {
         this.onSubmit = this.onSubmit.bind(this);
   
         this.state = {
-            name: ''
+            name: '',
+            btnName: 'Cancel'
         }
     }
 
     onChangeName(data) {
       this.setState({
-        name: data.target.value
+        name: data.target.value,
+        btnName: 'Cancel'
       });
     }
   
     onSubmit(data) {
         data.preventDefault()
         this.setState({
-            name: ''
+            name: '',
+            btnName: 'Finish'
         })
     }
 
@@ -43,8 +46,11 @@ export default class Add extends Component {
                     margin="dense"
                     />
                     <div class='btn-container'>
-                    <Button size="medium" type="submit" variant="contained">
+                    <Button size="medium" type="submit" variant="primary">
                         <SaveIcon /> Save 
+                    </Button>
+                    <Button size="medium" href={'/'} variant="primary">
+                        { this.state.btnName } 
                     </Button>
                     </div>
                 </form>
