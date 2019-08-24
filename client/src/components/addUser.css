@@ -1,0 +1,16 @@
+.modal {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: azure;
+    padding: 10rem;    
+}
+
+.btn-container {
+    margin-top: 2rem;
+}
+
+.modal-title {
+    font-size: 2rem;
+}
