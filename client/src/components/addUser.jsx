@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import TextField from '@material-ui/core/TextField';
 import SaveIcon from '@material-ui/icons/Save';
 import Button from '@material-ui/core/Button';
@@ -26,7 +26,7 @@ export default class Add extends Component {
     }
   
     onSubmit = async () => {
-        const data = { name: this.state.name }
+        const data = { name: this.state.name, films: [] }
         
         await api.addUser(data).then(res => {
             alert(`Success`)
@@ -35,31 +35,36 @@ export default class Add extends Component {
                 btnName: 'Finish'
             })
         })
+        
     }
 
     render() {
         return (
-            <div className='modal'>
-                <FormLabel className='modal-title'>
-                Add new user
-                </FormLabel>   
-                <form onSubmit={this.onSubmit}>
-                    <TextField
-                    id="standard-dense"
-                    label="Name"
-                    onChange={this.onChangeName}
-                    margin="dense"
-                    />
-                    <div className='btn-container'>
-                    <Button size="medium" type="submit" >
-                        <SaveIcon /> Save 
-                    </Button>
-                    <Button size="medium" href={'/'} >
-                        { this.state.btnName } 
-                    </Button>
+            <Fragment>
+                <div className="background">
+                    <div className='modal'>
+                        <FormLabel className='modal-title'>
+                        Add new user
+                        </FormLabel>   
+                        <form onSubmit={this.onSubmit}>
+                            <TextField
+                            id="standard-dense"
+                            label="Name"
+                            onChange={this.onChangeName}
+                            margin="dense"
+                            />
+                            <div className='btn-container'>
+                            <Button size="medium" type="submit" >
+                                <SaveIcon /> Save 
+                            </Button>
+                            <Button size="medium" href={'/'} >
+                                { this.state.btnName } 
+                            </Button>
+                            </div>
+                        </form>
                     </div>
-                </form>
-            </div>
+                </div>
+            </Fragment>
             )
     }
 }
