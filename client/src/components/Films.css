@@ -3,6 +3,6 @@
     left: 30%;
 }
 
-option {
+option, #label {
     font-size: 1.5rem;
 }
