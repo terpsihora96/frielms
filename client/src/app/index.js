@@ -13,7 +13,7 @@ function App() {
         Frielms
       </Typography>
       <div className="main">
-        <Films></Films>
+        <Films></Films> 
         <div>
           <User></User>
           <div className="add">

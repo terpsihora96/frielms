@@ -5,22 +5,33 @@ class ListUsers extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            data: [],
+            users: [],
             isLoading: false,
         }
     }
 
     componentDidMount = async () => {
         this.setState({ isLoading: true })
-        await api.getUsers()
-        .then(res => this.setState({ data: res.data.data }))
+
+        const res = await api.getUsers()
+
+        this.setState({ users: res.data.data, isLoading: false })
     }
 
     render() {
-        return (
-            // <div> { this.isLoading &&  'Loading' } </div>
+        const {users, isLoading} = this.state;
 
-            <p>Doesn't work.</p>
+        return (
+            <div className="films">
+                {isLoading && <div>Loading</div>}
+                {!isLoading && <div>
+                    <ul>
+                        {users.map(user =>  {
+                            return <li key={user._id}>{user.name}</li> 
+                        })}
+                    </ul>
+                </div>}
+            </div>
         )
     }
 }

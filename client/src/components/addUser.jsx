@@ -9,8 +9,6 @@ import api from '../api';
 export default class Add extends Component {
     constructor(props) {
         super(props);
-        this.onChangeName = this.onChangeName.bind(this)
-        this.onSubmit = this.onSubmit.bind(this)
   
         this.state = {
             name: '',
@@ -18,24 +16,24 @@ export default class Add extends Component {
         }
     }
 
-    onChangeName(data) {
+    onChangeName = (data) => {
         this.setState({
             name: data.target.value,
             btnName: 'Cancel'
         });
     }
   
-    onSubmit = async () => {
+    onSubmit = async (event) => {
+        event.preventDefault();
+
         const data = { name: this.state.name, films: [] }
         
-        await api.addUser(data).then(res => {
-            alert(`Success`)
-            this.setState({
-                name: '',
-                btnName: 'Finish'
-            })
+        await api.addUser(data)
+        alert(`Success`)
+        this.setState({
+            name: '',
+            btnName: 'Finish'
         })
-        
     }
 
     render() {
@@ -46,7 +44,7 @@ export default class Add extends Component {
                         <FormLabel className='modal-title'>
                         Add new user
                         </FormLabel>   
-                        <form onSubmit={this.onSubmit}>
+                        <form >
                             <TextField
                             id="standard-dense"
                             label="Name"
@@ -54,7 +52,7 @@ export default class Add extends Component {
                             margin="dense"
                             />
                             <div className='btn-container'>
-                            <Button size="medium" type="submit" >
+                            <Button size="medium" type="submit" onClick={this.onSubmit} >
                                 <SaveIcon /> Save 
                             </Button>
                             <Button size="medium" href={'/'} >
